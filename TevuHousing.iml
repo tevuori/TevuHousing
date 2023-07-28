@@ -31,5 +31,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.joml:joml:1.10.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: net.md-5:bungeecord-chat:1.16-R0.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.yaml:snakeyaml:2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-sync:4.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:bson:4.8.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongodb-driver-core:4.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.mongodb:bson-record-codec:4.8.2" level="project" />
   </component>
 </module>

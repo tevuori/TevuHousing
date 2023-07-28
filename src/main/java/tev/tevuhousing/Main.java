@@ -1,21 +1,51 @@
 package tev.tevuhousing;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 import org.bukkit.plugin.java.JavaPlugin;
 import tev.tevuhousing.commands.createWorldsAdmin;
 import tev.tevuhousing.commands.deleteWorld;
 import tev.tevuhousing.commands.tpWorld;
 import tev.tevuhousing.commands.tpWorldAdmin;
 
+import java.io.*;
 import java.util.HashMap;
 
-public final class Main extends JavaPlugin {
+import static com.mongodb.client.model.Filters.eq;
+import static tev.tevuhousing.utils.loadHm.runLoad;
+import static tev.tevuhousing.utils.saveHm.runSave;
+import static tev.tevuhousing.utils.scheduledSave.runScheduledSave;
 
+public final class Main extends JavaPlugin {
+    public MongoCollection<Document> collection;
+    public MongoDatabase database;
     @Override
     public void onEnable() {
         // Plugin startup logic
         // Load all worlds from hashmap
         for(String world : createWorldsAdmin.playerHouses.values()){
             getServer().createWorld(new org.bukkit.WorldCreator(world));
+        }
+        //Load the hashmap from the file
+        try {
+            runLoad();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        //Save hashmap every 10 minutes
+        runScheduledSave();
+        //MongoDB Setup
+        try{
+            MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+            database = mongoClient.getDatabase("data");
+            collection = database.getCollection("worlds");
+        }catch (Exception e){
+            System.out.println("MongoDB connection failed");
         }
         // Register events
         getServer().getPluginManager().registerEvents(new tev.tevuhousing.events.onFirstJoinCreate(), this);
@@ -41,6 +71,12 @@ public final class Main extends JavaPlugin {
         for(String world : createWorldsAdmin.playerHouses.values()){
             getServer().unloadWorld(world, true);
             getServer().getWorld(world).getWorldFolder().delete();
+        }
+        //On disable, save hashmap into file worldData.txt so it can be loaded on stasrtup
+        try {
+            runSave();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
