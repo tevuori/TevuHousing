@@ -18,8 +18,11 @@ public class tpaccept implements CommandExecutor {
                     Player playerToTeleport = Bukkit.getPlayer(strings[0]);
                     p.teleport(playerToTeleport);
                     playerToTeleport.sendMessage("Teleported to " + playerToTeleport.getName());
+                }else{
+                    p.sendMessage("You do not have any requests");
                 }
-
+            }else{
+                p.sendMessage("You do not have any requests");
             }
         }
         }

@@ -27,6 +27,10 @@ public final class Main extends JavaPlugin {
         getCommand("deleteWorld").setExecutor(new deleteWorld());
         getCommand("assignWorldAdmin").setExecutor(new tev.tevuhousing.commands.assignWorldAdmin());
         getCommand("unassignWorldAdmin").setExecutor(new tev.tevuhousing.commands.unassignWorldAdmin());
+        getCommand("tpa").setExecutor(new tev.tevuhousing.commands.tpa());
+        getCommand("tpaccept").setExecutor(new tev.tevuhousing.commands.tpaccept());
+        getCommand("tpdeny").setExecutor(new tev.tevuhousing.commands.tpdeny());
+
 
     }
 

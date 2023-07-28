@@ -23,8 +23,12 @@ public class tpa implements CommandExecutor
                     playerRequested.sendMessage("Player " + p.getName() + " wants to teleport to you. Type /tpaccept to accept or /tpdeny to deny");
                     p.sendMessage("Request sent");
                     tpaRequests.put(p.getName(),playernameRequested);
+            }else{
+                    p.sendMessage("Player not found");
+                }
+        }else{
+                p.sendMessage("Invalid arguments");
             }
-        }
     }return false;
 }
 }

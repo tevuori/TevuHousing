@@ -36,3 +36,15 @@ commands:
     description: Unassigns the specified player from the specified world.
     usage: /<command> <player> <world>
     permission: tevuhousing.unassignworldadmin
+  tpa:
+    description: Teleports you to the specified player.
+    usage: /<command> <player>
+    permission: tevuhousing.tpa
+  tpaccept:
+    description: Accepts the teleport request.
+    usage: /<command>
+    permission: tevuhousing.tpaccept
+  tpdeny:
+    description: Denies the teleport request.
+    usage: /<command>
+    permission: tevuhousing.tpdeny

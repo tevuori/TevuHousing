@@ -17,7 +17,11 @@ public class tpdeny implements CommandExecutor {
                     p.sendMessage("Request denied");
                     Player requestedPlayer = p.getServer().getPlayer(strings[0]);
                     requestedPlayer.sendMessage("Request denied");
+                }else{
+                    p.sendMessage("You do not have any requests");
                 }
+            }else{
+                p.sendMessage("You do not have any requests");
             }
         }
         return false;
