@@ -34,7 +34,6 @@ public class createWorldsAdmin implements CommandExecutor {
                         //Add world to the Id to hashmap
                         int sizeOfHashMap = playerHouses.size() + 1;
                         playerHouses.put("UNASSIGNED" + sizeOfHashMap, houseID);
-                        System.out.println(playerHouses);
                         playerHouses.forEach((key, value) -> p.sendMessage(key + " owns " + value));
                         //Send message to the world creator
                         p.sendMessage("World " + houseID + " has been created");

@@ -10,6 +10,8 @@ import tev.tevuhousing.commands.createWorldsAdmin;
 import tev.tevuhousing.commands.deleteWorld;
 import tev.tevuhousing.commands.tpWorld;
 import tev.tevuhousing.commands.tpWorldAdmin;
+import tev.tevuhousing.utils.mongoDbLoad;
+import tev.tevuhousing.utils.mongoDbSave;
 
 import java.io.*;
 import java.util.HashMap;
@@ -44,7 +46,9 @@ public final class Main extends JavaPlugin {
             MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
             database = mongoClient.getDatabase("data");
             collection = database.getCollection("worlds");
-        }catch (Exception e){
+            System.out.println("MongoDB connection successful");
+            mongoDbLoad.loadWorldsData();
+        }catch (Exception e) {
             System.out.println("MongoDB connection failed");
         }
         // Register events
@@ -77,6 +81,11 @@ public final class Main extends JavaPlugin {
             runSave();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        try{
+            mongoDbSave.saveWorldsData();
+        }catch (Exception e){
+            System.out.println("MongoDB connection failed");
         }
     }
 }

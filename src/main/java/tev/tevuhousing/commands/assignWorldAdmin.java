@@ -17,8 +17,12 @@ public class assignWorldAdmin implements CommandExecutor {
                     String houseId = strings[1];
 
                     if(createWorldsAdmin.playerHouses.containsValue(houseId)) {
-                        createWorldsAdmin.playerHouses.remove(houseId);
-                        createWorldsAdmin.playerHouses.put(playerName, houseId);
+                        //replace the old key with new one (player name)
+                        createWorldsAdmin.playerHouses.forEach((key, value) -> {
+                            if (value.equals(houseId)) {
+                                createWorldsAdmin.playerHouses.replace(key, playerName);
+                            }
+                        });
                         p.sendMessage("Assigned world " + houseId + " to " + playerName);
                     }else{
                         p.sendMessage("World not found");
