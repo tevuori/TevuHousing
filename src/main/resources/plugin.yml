@@ -1,0 +1,38 @@
+name: TevuHousing
+version: '${project.version}'
+main: tev.tevuhousing.Main
+api-version: '1.20'
+prefix: [ TH ]
+load: STARTUP
+authors: [Tevuori]
+description: This plugin should be used for multiple world integration into vanilla servers.
+website: tevuori.eu
+
+commands:
+  listworlds:
+    description: Lists all worlds that are currently registered.
+    usage: /<command>
+    permission: tevuhousing.listworlds
+  tpworldadmin:
+    description: Teleports you to the specified world.
+    usage: /<command> <world>
+    permission: tevuhousing.tpworld
+  tpworld:
+    description: Teleports you YOUR world.
+    usage: /<command> <world>
+  createWorlds:
+    description: Creates all worlds
+    usage: /<command>
+    permission: tevuhousing.createworlds
+  deleteWorld:
+    description: Deletes the specified world.
+    usage: /<command> <world>
+    permission: tevuhousing.deleteworld
+  assignWorldAdmin:
+    description: Assigns the specified player to the specified world.
+    usage: /<command> <player> <world>
+    permission: tevuhousing.assignworldadmin
+  unassignWorldAdmin:
+    description: Unassigns the specified player from the specified world.
+    usage: /<command> <player> <world>
+    permission: tevuhousing.unassignworldadmin
